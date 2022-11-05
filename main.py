@@ -73,7 +73,7 @@ def login():
     temp_pd = request.form["pd"]
     for i in temp_log:
         if i.email == temp_email and i.password == temp_pd:
-            session['user'] = user(email)
+            #session['user'] = user(email)
             return redirect("/home/"+temp_email)
     return render_template("homepage.html", img=img, likes=likes, error=error)
 
@@ -99,8 +99,8 @@ def signup():
 
 @app.route("/home/<string:email>")
 def home(email):
-    if not session.get('user'):
-        return redirect("/")
+    #if not session.get('user'):
+        #return redirect("/")
     img = Blog.query.filter_by(uname=user(email)).all()
     for i in img:
         imgd = i.image
@@ -165,7 +165,7 @@ def like_btn(sl_no):
 
 @app.route("/home/logout", methods=["GET"])
 def logout():
-    session['user'] = None
+    #session['user'] = None
     return redirect("/")
 
 
